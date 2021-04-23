@@ -1,0 +1,2 @@
+# ProgettoTecno
+progetto app covid 
