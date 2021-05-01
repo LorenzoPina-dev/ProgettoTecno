@@ -1,2 +1,2 @@
-# Codice parte java
+# ProgettoTecno parte java
 raccoltta dati da GitHub rielaborazione e push su altervista (csv)
