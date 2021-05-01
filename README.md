@@ -1,4 +1,2 @@
-# ProgettoTecno
-progetto app covid 
-prelevazione dati Java 
-visualizzazione Javascript
+# ProgettoTecno dati
+dati di output dati dal codice java utilizzato poi nel js per la grafica del sito
