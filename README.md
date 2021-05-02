@@ -1,4 +1,2 @@
-# ProgettoTecno
-progetto app covid 
-prelevazione dati Java 
-visualizzazione Javascript
+# ProgettoTecno parte js 
+Splittaggio dati regionali e nazionali
