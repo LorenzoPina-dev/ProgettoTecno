@@ -1,2 +1,2 @@
 # ProgettoTecno parte java
-raccoltta dati da GitHub rielaborazione e push su altervista (csv)
+raccoltta dati nazionali e regioneli da GitHub rielaborazione e push su altervista (csv)
