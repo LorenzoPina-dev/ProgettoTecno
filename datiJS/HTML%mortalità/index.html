@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="file.js"></script>
+    <title>%mortalità</title>
+</head>
+<body>
+    <p>
+        <label>Età compresa tra:</label>
+        <p>
+            <input type="radio" id="radio19" name="ageGroup" value="0">1 - 19
+            <input type="radio" id="radio39" name="ageGroup" value="1">20 - 39
+            <input type="radio" id="radio59" name="ageGroup" value="2">40 - 59
+            <input type="radio" id="radio79" name="ageGroup" value="3">60 - 79
+            <input type="radio" id="radioOver" name="ageGroup" value="4">80 - 100+
+        </p>
+    </p>
+    <p>
+        <label>Genere:</label>
+        <p>
+            <input type="radio" name="sexGroup" id="radioMaschio" value="0">Maschio
+            <input type="radio" name="sexGroup" id="radioFemmina" value="1">Femmina
+        </p>
+    </p>
+    <p>
+        <label>Problematiche:</label>
+        <p>
+            <input type="checkbox" id="checkIpertensione">Ipertensione
+            <input type="checkbox" id="checkRespiratori">Problemi respiratori cronici
+            <input type="checkbox" id="checkDiabete">Diabete
+            <input type="checkbox" id="checkCardio">problemi cardiaci
+        </p>
+    </p>
+    <p>
+        <button id="btnCalcola" onclick="Calcola()">Calcola tasso mortalità</button>
+        <button id="btnReset" onclick="Reset()">Reset</button>
+    </p>
+</body>
+</html>
