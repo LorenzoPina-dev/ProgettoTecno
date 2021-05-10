@@ -140,7 +140,7 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
-        ButRemuve.setText("remuve");
+        ButRemuve.setText("remove");
         ButRemuve.setName("ButRemuve"); // NOI18N
         ButRemuve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

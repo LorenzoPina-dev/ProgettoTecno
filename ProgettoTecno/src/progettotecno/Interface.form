@@ -215,7 +215,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="ButRemuve">
       <Properties>
-        <Property name="text" type="java.lang.String" value="remuve"/>
+        <Property name="text" type="java.lang.String" value="remove"/>
         <Property name="name" type="java.lang.String" value="ButRemuve" noResource="true"/>
       </Properties>
       <Events>
