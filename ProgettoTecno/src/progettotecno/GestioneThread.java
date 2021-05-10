@@ -44,7 +44,7 @@ public class GestioneThread {
         }
     }
 
-    public static void GestioneRicerca(String percorso, String nomeFile, String nomeFileNaz, String sito, String nome, String Password, Vector<String> ParametriRicerca, Vector<String> fileRicerca, Vector<String> ParametriRicercaNaz, Vector<String> fileRicercaNaz) throws IOException, InterruptedException {
+    public static void GestioneRicerca(String percorso, String nomeFile, String nomeFileNaz, String nome, String Password, Vector<String> ParametriRicerca, Vector<String> fileRicerca, Vector<String> ParametriRicercaNaz, Vector<String> fileRicercaNaz) throws IOException, InterruptedException {
         Gestore.Istance().setAttRicerca(ParametriRicerca);
         GestoreNazione.Instance().setAttRicerca(fileRicercaNaz);
         int sizePar=ParametriRicerca.size();
@@ -73,7 +73,7 @@ public class GestioneThread {
         }
         gestioneFile.creaFile(percorso + "\\" + nomeFile, ParametriRicerca);    
         gestioneFile.creaFileNaz(percorso + "\\" + nomeFileNaz, ParametriRicercaNaz);
-        if (gestioneFile.Upload(percorso, sito, nome, Password, nomeFile) && gestioneFile.Upload(percorso, sito, nome, Password, nomeFileNaz)) {
+        if (gestioneFile.Upload(percorso, nome, Password, nomeFile) && gestioneFile.Upload(percorso, nome, Password, nomeFileNaz)) {
             JOptionPane.showMessageDialog(null, "aggiornamento avvenuto con successo");
         }
     }

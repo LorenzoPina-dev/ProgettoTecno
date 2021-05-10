@@ -59,18 +59,14 @@ public class gestioneFile {
         return null;
     }
 
-    public static void CreaFileSettaggi(String percorso, String sito, String username, String Password, Vector<String> Att, Vector<String> AttNaz) throws FileNotFoundException, IOException {
+    public static void CreaFileSettaggi(String percorso, String username, String Password, Object[] Att) throws FileNotFoundException, IOException {
         File out = new File(percorso);
         FileOutputStream bout = new FileOutputStream(out);
-        String Stringout = sito + "\n" + username + "\n" + Password + "\n";
-        for (String a : Att) {
-            Stringout += a + "\n";
+        String Stringout = username + "\n" + Password + "\n";
+        for (int i=0;i<Att.length-1;i++) {
+            Stringout += Att[i].toString() + "\n";
         }
-        Stringout += "Naz\n";   //uso Naz per definire dove finiscono gli attributi scelti per le regioni e per gli attributi scelti della nazione
-        for (int i = 0; i < AttNaz.size() - 1; i++) {
-            Stringout += AttNaz.get(i) + "\n";
-        }
-        Stringout += AttNaz.get(AttNaz.size() - 1);
+            Stringout += Att[Att.length-1].toString();
         bout.write(Stringout.getBytes());
     }
 
@@ -119,13 +115,13 @@ public class gestioneFile {
         bout.write(DatiOut.getBytes());
     }
 
-    public static boolean Upload(String percorsoFile, String server, String user, String pass, String nomeFile) {
+    public static boolean Upload(String percorsoFile,  String user, String pass, String nomeFile) {
         int port = 21;
 
         FTPClient ftpClient = new FTPClient();
         try {
 
-            ftpClient.connect(server, port);
+            ftpClient.connect("ftp.applorenzo2.altervista.org", port);
             if (ftpClient.login(user, pass)) {
                 ftpClient.enterLocalPassiveMode();
 
@@ -134,7 +130,7 @@ public class gestioneFile {
                 // APPROACH #1: uploads first file using an InputStream
                 File firstLocalFile = new File(percorsoFile + "\\" + nomeFile);
 
-                String firstRemoteFile = "/ProgettoTecno/" + nomeFile;
+                String firstRemoteFile = "/ProgettoTecno/dati/" + nomeFile;
                 InputStream inputStream = new FileInputStream(firstLocalFile);
 
                 System.out.println("Start uploading first file");

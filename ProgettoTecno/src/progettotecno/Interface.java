@@ -34,8 +34,8 @@ public class Interface extends javax.swing.JFrame {
      * Creates new form Interface
      */
     Vector<String> AllAtt, FileAtt, AllAttNaz, FileAttNaz;        //i dati relativi agli attributi che l'utente può selezionare
-    Vector<String> RimanentiReg, RimanentiNaz;  //per gestire la ricerca degli attributi e rappresentano i dati che l'utente può ancora scegliere
-    DefaultListModel<String> model, model2, modelNaz, model2Naz; //le 4 liste 2 per gli attributi scelti e non e le altre 2 per la nazione
+    Vector<String> RimanentiReg;  //per gestire la ricerca degli attributi e rappresentano i dati che l'utente può ancora scegliere
+    DefaultListModel<String> model, model2; //le 4 liste 2 per gli attributi scelti e non e le altre 2 per la nazione
     String percorso = ".\\";
     String nomeSettaggi = "settaggi.txt";
     String nomeDati = "dati.csv";
@@ -53,22 +53,14 @@ public class Interface extends javax.swing.JFrame {
         AllAttNaz = GestoreNazione.Instance().getAllAtt();
         FileAttNaz = GestoreNazione.Instance().getAllFileAtt();
         RimanentiReg = new Vector<String>();
-        RimanentiNaz = new Vector<String>();
         model = new DefaultListModel<String>();
         model2 = new DefaultListModel<String>();
-        modelNaz = new DefaultListModel<String>();
-        model2Naz = new DefaultListModel<String>();
         for (String Att : AllAtt) {
             RimanentiReg.addElement(Att);
         }
-        for (String Att : AllAttNaz) {
-            RimanentiNaz.addElement(Att);
-        }
         ListAtt.setModel(model);
         ListAttScelti.setModel(model2);
-        ListAttNaz.setModel(modelNaz);
-        ListAttSceltiNaz.setModel(model2Naz);
-        AggiornaGrafica();
+        AggiornaRegione();
     }
 
     /**
@@ -80,8 +72,6 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        TxtSito = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         TxtUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -95,26 +85,10 @@ public class Interface extends javax.swing.JFrame {
         ListAttScelti = new javax.swing.JList<>();
         ButAdd = new javax.swing.JButton();
         ButRemuve = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        ListAttNaz = new javax.swing.JList<>();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        ListAttSceltiNaz = new javax.swing.JList<>();
-        ButRemuve1 = new javax.swing.JButton();
-        ButAdd1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         TxtFiltroRegione = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        TxtFiltroNaz = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("sito dove caricare il file:");
-        jLabel1.setToolTipText("");
-        jLabel1.setName(""); // NOI18N
-
-        TxtSito.setName("TxtSito"); // NOI18N
 
         jLabel2.setText("username:");
         jLabel2.setToolTipText("");
@@ -174,174 +148,80 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
-        ListAttNaz.setName("ListAtt"); // NOI18N
-        jScrollPane3.setViewportView(ListAttNaz);
-
-        ListAttSceltiNaz.setName("ListAttScelti"); // NOI18N
-        jScrollPane4.setViewportView(ListAttSceltiNaz);
-
-        ButRemuve1.setText("remuve");
-        ButRemuve1.setName("ButRemuve"); // NOI18N
-        ButRemuve1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButRemuve1ActionPerformed(evt);
-            }
-        });
-
-        ButAdd1.setText("Add");
-        ButAdd1.setName("ButAdd"); // NOI18N
-        ButAdd1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButAdd1ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("seleziona campi riguardo la nazione");
-
-        jLabel5.setText("seleziona campi riguardo le regioni");
-
         TxtFiltroRegione.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TxtFiltroRegioneKeyPressed(evt);
             }
         });
 
-        jLabel6.setText("ricerca Attributi Regione");
-
-        TxtFiltroNaz.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TxtFiltroNazKeyPressed(evt);
-            }
-        });
-
-        jLabel7.setText("ricerca Attributi Nazione");
+        jLabel6.setText("ricerca Attributi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(Cancella)
+                .addGap(99, 99, 99)
+                .addComponent(CaricaVecchiaConf)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(AggiornaDati)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addComponent(Cancella))
-                            .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtSito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(CaricaVecchiaConf)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(AggiornaDati)
-                                .addGap(52, 52, 52))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(54, 54, 54)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(TxtFiltroRegione, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jLabel5)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(3, 3, 3)
+                                .addComponent(ButAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ButRemuve))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 10, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(144, 144, 144))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(TxtFiltroNaz, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(3, 3, 3)
-                                                .addComponent(ButAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(ButRemuve)
-                                            .addComponent(ButAdd1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(340, 340, 340)
-                                    .addComponent(ButRemuve1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(373, 373, 373)
-                                    .addComponent(jLabel4))))
-                        .addContainerGap(18, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(27, 27, 27)
+                        .addComponent(TxtFiltroRegione, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(TxtSito, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtFiltroRegione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TxtFiltroRegione, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TxtFiltroNaz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
-                                        .addComponent(ButAdd)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ButRemuve))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)
+                                .addComponent(ButAdd)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(ButAdd1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ButRemuve1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10))
+                                .addComponent(ButRemuve))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(30, 30, 30)
+                        .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Cancella)
@@ -350,47 +230,33 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        TxtSito.getAccessibleContext().setAccessibleName("TxtSito");
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AggiornaDatiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AggiornaDatiActionPerformed
         int sizeModel12 = model2.size();
-        Vector<String> AttScelti = new Vector<String>(sizeModel12), File = new Vector<String>(sizeModel12);
+        Vector<String> AttScelti = new Vector<String>(), File = new Vector<String>();
+        Vector<String> AttSceltiNaz = new Vector<String>(), FileNaz = new Vector<String>();
         for (int i = 0; i < sizeModel12; i++) {
-            AttScelti.addElement(model2.get(i));
-        }
-        for (int i = 0; i < model2.size(); i++) {
-            int j = 0;
-            boolean trovato = false;
-            while (j < FileAtt.size() && !trovato) {
-                if (AllAtt.get(j).equals(AttScelti.get(i))) {//cerco in che file si trova il dato scelto
+            for (int j = 0; j < AllAtt.size(); j++) {
+                if (AllAtt.get(j).equals(model2.get(i))) {
+                    AttScelti.addElement(model2.get(i));
                     File.addElement(FileAtt.get(j));
-                    trovato = true;
+                    break;
                 }
-                j++;
             }
-        }
-        int sizeModel12Naz = model2Naz.size();
-        Vector<String> AttSceltiNaz = new Vector<String>(sizeModel12Naz), FileNaz = new Vector<String>(sizeModel12Naz);
-        for (int i = 0; i < model2Naz.size(); i++) {
-            AttSceltiNaz.addElement(model2Naz.get(i));
-        }
-        for (int i = 0; i < model2Naz.size(); i++) {
-            int j = 0;
-            boolean trovato = false;
-            while (j < AllAttNaz.size() && !trovato) {
-                if (AllAttNaz.get(j).equals(AttSceltiNaz.get(i))) {
+
+            for (int j = 0; j < AllAttNaz.size(); j++) {
+                if (AllAttNaz.get(j).equals(model2.get(i))) {
+                    AttSceltiNaz.addElement(model2.get(i));
                     FileNaz.addElement(FileAttNaz.get(j));
-                    trovato = true;
+                    break;
                 }
-                j++;
             }
         }
         try {
-            GestioneRicerca(percorso, nomeDati, nomeDatiNaz, TxtSito.getText(), TxtUsername.getText(), TxtPassword.getText(), AttScelti, File, AttSceltiNaz, FileNaz);
-            gestioneFile.CreaFileSettaggi(percorso + "\\" + nomeSettaggi, TxtSito.getText(), TxtUsername.getText(), TxtPassword.getText(), AttScelti, AttSceltiNaz);    //file che serve per dare una esperienza migliore all'utente in modo tale che non deve inserire sempre tutti i dati ma ha un salvataggio del ultimo settaggio
+            GestioneRicerca(percorso, nomeDati, nomeDatiNaz, TxtUsername.getText(), TxtPassword.getText(), AttScelti, File, AttSceltiNaz, FileNaz);
+            gestioneFile.CreaFileSettaggi(percorso + "\\" + nomeSettaggi, TxtUsername.getText(), TxtPassword.getText(), model2.toArray());    //file che serve per dare una esperienza migliore all'utente in modo tale che non deve inserire sempre tutti i dati ma ha un salvataggio del ultimo settaggio
         } catch (IOException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -399,23 +265,19 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_AggiornaDatiActionPerformed
 
     private void ButAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButAddActionPerformed
-        Add(model, model2, ListAtt, true, RimanentiReg, true);
+        Add(model, model2, ListAtt, true, RimanentiReg);
     }//GEN-LAST:event_ButAddActionPerformed
 
     private void ButRemuveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButRemuveActionPerformed
-        Add(model2, model, ListAttScelti, false, RimanentiReg, true);//inverto mode1 con mode2 per fare in modo che lo tolga al posto di metterlo
+        Add(model2, model, ListAttScelti, false, RimanentiReg);//inverto mode1 con mode2 per fare in modo che lo tolga al posto di metterlo
     }//GEN-LAST:event_ButRemuveActionPerformed
 
     private void CancellaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancellaActionPerformed
         model2.clear();
         RimanentiReg = (Vector<String>) AllAtt.clone();
-        model2Naz.clear();
-        RimanentiNaz = (Vector<String>) AllAttNaz.clone();
-        AggiornaGrafica();
+        AggiornaRegione();
         TxtPassword.setText("");
-        TxtSito.setText("");
         TxtUsername.setText("");
-        TxtFiltroNaz.setText("");
         TxtFiltroRegione.setText("");
     }//GEN-LAST:event_CancellaActionPerformed
 
@@ -423,28 +285,15 @@ public class Interface extends javax.swing.JFrame {
         try {
             String[] Att = gestioneFile.LeggiFileSettaggi(percorso + "\\" + nomeSettaggi);
             model2.clear();
-            model2Naz.clear();
-            TxtSito.setText(Att[0]);
-            TxtUsername.setText(Att[1]);
-            TxtPassword.setText(Att[2]);
-            int divisione = -1;
-            for (int i = 0; i < Att.length; i++) {
-                if (Att[i].equals("Naz")) {     //splitto gli attributi della regione da quelli della nazione
-                    divisione = i;
-                    break;
-                }
-            }
+            TxtUsername.setText(Att[0]);
+            TxtPassword.setText(Att[1]);
             RimanentiReg = (Vector<String>) AllAtt.clone();
-            RimanentiNaz = (Vector<String>) AllAttNaz.clone();
-            for (int i = 3; i < divisione; i++) {
-                model2.addElement(Att[i]);
+            for (int i = 2; i < Att.length; i++) {
                 RimanentiReg.remove(Att[i]);
+                model2.addElement(Att[i]);
             }
-            for (int i = divisione + 1; i < Att.length; i++) {
-                model2Naz.addElement(Att[i]);
-                RimanentiNaz.remove(Att[i]);
-            }
-            AggiornaGrafica();
+
+            AggiornaRegione();
         } catch (IOException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -458,34 +307,10 @@ public class Interface extends javax.swing.JFrame {
         }
     }
 
-    private void AggiornaNazione() {
-        TxtFiltroNaz.setText("");
-        modelNaz.clear();
-        for (String el : RimanentiNaz) {
-            modelNaz.addElement(el);
-        }
-    }
-
-    private void AggiornaGrafica() {
-        AggiornaNazione();
-        AggiornaRegione();
-    }
-
-    private void ButRemuve1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButRemuve1ActionPerformed
-        Add(model2Naz, modelNaz, ListAttSceltiNaz, false, RimanentiNaz, false);
-    }//GEN-LAST:event_ButRemuve1ActionPerformed
-
-    private void ButAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButAdd1ActionPerformed
-        Add(modelNaz, model2Naz, ListAttNaz, true, RimanentiNaz, false);
-    }//GEN-LAST:event_ButAdd1ActionPerformed
 
     private void TxtFiltroRegioneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroRegioneKeyPressed
         filtra(model, TxtFiltroRegione.getText(), RimanentiReg);
     }//GEN-LAST:event_TxtFiltroRegioneKeyPressed
-
-    private void TxtFiltroNazKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroNazKeyPressed
-        filtra(modelNaz, TxtFiltroNaz.getText(), RimanentiNaz);
-    }//GEN-LAST:event_TxtFiltroNazKeyPressed
     private void filtra(DefaultListModel<String> model, String testo, Vector<String> all) {
         if (model == null || testo == null || all == null) {
             return;
@@ -498,7 +323,7 @@ public class Interface extends javax.swing.JFrame {
         }
     }
 
-    private void Add(DefaultListModel<String> model1, DefaultListModel<String> model2, JList<String> lista, boolean Aggiunta, Vector<String> rimanenti, boolean regione) {
+    private void Add(DefaultListModel<String> model1, DefaultListModel<String> model2, JList<String> lista, boolean Aggiunta, Vector<String> rimanenti) {
         int indice = lista.getSelectedIndex();
         if (indice == -1) {
             JOptionPane.showMessageDialog(null, "Devi selezionare un elemento");
@@ -512,11 +337,7 @@ public class Interface extends javax.swing.JFrame {
         } else {
             rimanenti.remove(El);
         }
-        if (regione) {
-            AggiornaRegione();
-        } else {
-            AggiornaNazione();
-        }
+        AggiornaRegione();
     }
 
     /**
@@ -557,31 +378,19 @@ public class Interface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AggiornaDati;
     private javax.swing.JButton ButAdd;
-    private javax.swing.JButton ButAdd1;
     private javax.swing.JButton ButRemuve;
-    private javax.swing.JButton ButRemuve1;
     private javax.swing.JButton Cancella;
     private javax.swing.JButton CaricaVecchiaConf;
     private javax.swing.JList<String> ListAtt;
-    private javax.swing.JList<String> ListAttNaz;
     private javax.swing.JList<String> ListAttScelti;
-    private javax.swing.JList<String> ListAttSceltiNaz;
-    private javax.swing.JTextField TxtFiltroNaz;
     private javax.swing.JTextField TxtFiltroRegione;
     private javax.swing.JTextField TxtPassword;
-    private javax.swing.JTextField TxtSito;
     private javax.swing.JTextField TxtUsername;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     // End of variables declaration//GEN-END:variables
 
     private void addElement(String get) {
