@@ -61,6 +61,7 @@ public class Interface extends javax.swing.JFrame {
         ListAtt.setModel(model);
         ListAttScelti.setModel(model2);
         AggiornaRegione();
+        renderizzaSelezionate();
     }
 
     /**
@@ -87,10 +88,13 @@ public class Interface extends javax.swing.JFrame {
         ButRemuve = new javax.swing.JButton();
         TxtFiltroRegione = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        ckNazione = new javax.swing.JCheckBox();
+        ckRegioni = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("username:");
+        jLabel2.setText("prelevare dati di:");
         jLabel2.setToolTipText("");
         jLabel2.setName(""); // NOI18N
 
@@ -156,6 +160,25 @@ public class Interface extends javax.swing.JFrame {
 
         jLabel6.setText("ricerca Attributi");
 
+        ckNazione.setSelected(true);
+        ckNazione.setText("Nazione");
+        ckNazione.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckNazioneItemStateChanged(evt);
+            }
+        });
+
+        ckRegioni.setText("Regioni");
+        ckRegioni.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckRegioniItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("username:");
+        jLabel4.setToolTipText("");
+        jLabel4.setName(""); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,15 +192,23 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(AggiornaDati)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ckNazione, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ckRegioni, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(41, 41, 41)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,13 +218,17 @@ public class Interface extends javax.swing.JFrame {
                             .addComponent(ButRemuve))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addGap(27, 27, 27)
                         .addComponent(TxtFiltroRegione, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(484, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,22 +247,33 @@ public class Interface extends javax.swing.JFrame {
                                 .addComponent(ButAdd)
                                 .addGap(18, 18, 18)
                                 .addComponent(ButRemuve))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
+                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ckNazione)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ckRegioni, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Cancella)
                         .addComponent(AggiornaDati))
                     .addComponent(CaricaVecchiaConf))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(278, Short.MAX_VALUE)))
         );
 
         pack();
@@ -238,19 +284,23 @@ public class Interface extends javax.swing.JFrame {
         Vector<String> AttScelti = new Vector<String>(), File = new Vector<String>();
         Vector<String> AttSceltiNaz = new Vector<String>(), FileNaz = new Vector<String>();
         for (int i = 0; i < sizeModel12; i++) {
-            for (int j = 0; j < AllAtt.size(); j++) {
-                if (AllAtt.get(j).equals(model2.get(i))) {
-                    AttScelti.addElement(model2.get(i));
-                    File.addElement(FileAtt.get(j));
-                    break;
+            if (ckRegioni.isSelected()) {
+                for (int j = 0; j < AllAtt.size(); j++) {
+                    if (AllAtt.get(j).toLowerCase().equals(model2.get(i).toLowerCase())) {
+                        AttScelti.addElement(model2.get(i));
+                        File.addElement(FileAtt.get(j));
+                        break;
+                    }
                 }
             }
 
-            for (int j = 0; j < AllAttNaz.size(); j++) {
-                if (AllAttNaz.get(j).equals(model2.get(i))) {
-                    AttSceltiNaz.addElement(model2.get(i));
-                    FileNaz.addElement(FileAttNaz.get(j));
-                    break;
+            if (ckNazione.isSelected()) {
+                for (int j = 0; j < AllAttNaz.size(); j++) {
+                    if (AllAttNaz.get(j).toLowerCase().equals(model2.get(i).toLowerCase())) {
+                        AttSceltiNaz.addElement(model2.get(i));
+                        FileNaz.addElement(FileAttNaz.get(j));
+                        break;
+                    }
                 }
             }
         }
@@ -288,6 +338,8 @@ public class Interface extends javax.swing.JFrame {
             TxtUsername.setText(Att[0]);
             TxtPassword.setText(Att[1]);
             RimanentiReg = (Vector<String>) AllAtt.clone();
+            for(int i=0;i<RimanentiReg.size();i++)
+                RimanentiReg.set(i,RimanentiReg.get(i).toLowerCase());
             for (int i = 2; i < Att.length; i++) {
                 RimanentiReg.remove(Att[i]);
                 model2.addElement(Att[i]);
@@ -311,6 +363,14 @@ public class Interface extends javax.swing.JFrame {
     private void TxtFiltroRegioneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroRegioneKeyPressed
         filtra(model, TxtFiltroRegione.getText(), RimanentiReg);
     }//GEN-LAST:event_TxtFiltroRegioneKeyPressed
+
+    private void ckNazioneItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckNazioneItemStateChanged
+        renderizzaSelezionate();
+    }//GEN-LAST:event_ckNazioneItemStateChanged
+
+    private void ckRegioniItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckRegioniItemStateChanged
+        renderizzaSelezionate();
+    }//GEN-LAST:event_ckRegioniItemStateChanged
     private void filtra(DefaultListModel<String> model, String testo, Vector<String> all) {
         if (model == null || testo == null || all == null) {
             return;
@@ -336,6 +396,26 @@ public class Interface extends javax.swing.JFrame {
             rimanenti.addElement(El);
         } else {
             rimanenti.remove(El);
+        }
+        AggiornaRegione();
+    }
+
+    private void renderizzaSelezionate() {
+        RimanentiReg.clear();
+        model2.clear();
+        if (ckNazione.isSelected()) {
+            for (String Att : AllAttNaz) {
+                if (!RimanentiReg.contains(Att.toLowerCase())) {
+                    RimanentiReg.addElement(Att.toLowerCase());
+                }
+            }
+        }
+        if (ckRegioni.isSelected()) {
+            for (String Att : AllAtt) {
+                if (!RimanentiReg.contains(Att.toLowerCase())) {
+                    RimanentiReg.addElement(Att.toLowerCase());
+                }
+            }
         }
         AggiornaRegione();
     }
@@ -386,8 +466,11 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JTextField TxtFiltroRegione;
     private javax.swing.JTextField TxtPassword;
     private javax.swing.JTextField TxtUsername;
+    private javax.swing.JCheckBox ckNazione;
+    private javax.swing.JCheckBox ckRegioni;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
