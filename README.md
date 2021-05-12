@@ -1,4 +1,2 @@
-# ProgettoTecno
-progetto app covid 
-prelevazione dati Java 
-visualizzazione Javascript
+# ProgettoTecno dati
+dati relativi alle regioni e alla nazione creati dal java
