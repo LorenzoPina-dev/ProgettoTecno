@@ -1,0 +1,170 @@
+.Div
+{
+    border-style:solid;
+    border-width: 1px;
+    border-collapse:collapse;
+    width:60%;
+    text-align:left;
+    border-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+}
+body
+{
+    font-family: Tahoma, Verdana, sans-serif;
+}
+.Button
+{
+  width: 100%;
+  height: 35px;
+  border-radius: 10px;
+  background-color: white;
+}
+.P1
+{
+  text-align: center;
+  font-size: 60px;
+}
+
+
+
+
+/* The container */
+.container {
+    display:inline;
+
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 5px;
+
+
+  }
+  
+  /* Hide the browser's default radio button */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+
+    background-color: #eee;
+    
+    border-style:solid;
+    border-width: 1px;
+    border-collapse:collapse;
+    width:50%;
+    text-align:center;
+    border-color: black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color:rgb(59, 223, 59);
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container .checkmark:after {
+        top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+
+
+
+/* toggle / switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 7px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 23px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 5px;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(59, 223, 59);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgb(59, 223, 59);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(33px);
+    -ms-transform: translateX(33x);
+    transform: translateX(33px);
+    
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+    
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
