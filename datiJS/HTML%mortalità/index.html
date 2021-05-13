@@ -14,89 +14,106 @@
 </head>
 
 <body>
-
-    <b>
+  <b>
         <p class="P1">Survival Rate Calculator</p>
     </b>
     <br>
-    <div class="Div">
-        <p>
-            <b><label class="label">Età compresa tra:</label></b>
-        </p>
-        <p>
-            <label class="container">
-                <input type="radio" name="ageGroup" id="radio19" value="0">
-                <span class="checkmark"> 01 - 19 </span>
-            </label>
-            <label class="container">
-                <input type="radio" name="ageGroup" id="radio39" value="1">
-                <span class="checkmark">20 - 39</span>
-            </label>
-            <label class="container">
-                <input type="radio" name="ageGroup" id="radio59" value="1">
-                <span class="checkmark">40 - 59</span>
-            </label>
-            <label class="container">
-                <input type="radio" name="ageGroup" id="radio79" value="1">
-                <span class="checkmark">60 - 79</span>
-            </label>
-            <label class="container">
-                <input type="radio" name="ageGroup" id="radioOver" value="1">
-                <span class="checkmark">80 - 100+</span>
-            </label>
-        </p>
-        <br>
-        <p>
-            <b><label class="label">Genere:</label></b>
-        </p>
-        <br>
-        <p>
-            <label class="container">
-                <input type="radio" name="sexGroup" id="radioMaschio" value="0">
-                <span class="checkmark"> Maschio </span>
-            </label>
-            <label class="container">
-                <input type="radio" name="sexGroup" id="radioFemmina" value="1">
-                <span class="checkmark">Femmina</span>
-            </label>
-        </p>
-        <br>
-        <p>
-            <b><label class="label">Problematiche:</label></b>
-        </p>
-        <br>
-        <p>
-            <label class="switch">
-                <input type="checkbox" id="checkIpertensione">
-                <span class="slider"></span>
-            </label>Ipertensione
-        </p>
-        <p>
+    <form>
+        <div class="Div">
+            <div class="col nopad mb-4">
 
-            <label class="switch">
-                <input type="checkbox" id="checkRespiratori">
-                <span class="slider"></span>
-            </label>Problemi respiratori cronici
-        </p>
-        <p>
+                <h5 class="font-weight-bold mb-3">Età compresa tra:</h5>
+                <div class="row row-cols-md-2 row-cols-sm-2 row-cols-1 nopad text-center">
+                    <div class="col  mb-2">
+                        <label class="container">
+                            <input type="radio" name="ageGroup" id="radio19" value="0">
+                            <span class="checkmark"> 01 - 19 </span>
+                        </label>
+                    </div>
+                    <div class="col mb-2">
+                        <label class="container">
+                            <input type="radio" name="ageGroup" id="radio39" value="1">
+                            <span class="checkmark">20 - 39</span>
+                        </label>
+                    </div>
+                    <div class="col  mb-2">
+                        <label class="container">
+                            <input type="radio" name="ageGroup" id="radio59" value="1">
+                            <span class="checkmark">40 - 59</span>
+                        </label>
+                    </div>
+                    <div class="col mb-2">
+                        <label class="container">
+                            <input type="radio" name="ageGroup" id="radio79" value="1">
+                            <span class="checkmark">60 - 79</span>
+                        </label>
+                    </div>
+                    <div class="col  mb-2">
+                        <label class="container">
+                            <input type="radio" name="ageGroup" id="radioOver" value="1">
+                            <span class="checkmark">80 - 100+</span>
+                        </label>
+                    </div>
 
-            <label class="switch">
-                <input type="checkbox" id="checkDiabete">
-                <span class="slider"></span>
-            </label>Diabete
-        </p>
-        <p>
+                </div>
 
-            <label class="switch">
-                <input type="checkbox" id="checkCardio">
-                <span class="slider"></span>
-            </label>problemi cardiaci
-        </p>
-        <br>
-        <p>
-            <button id="btnCalcola" onclick="Calcola()" class="Button">Calcola tasso mortalità</button>
-        </p>
-    </div>
+            </div>
+            <h5 class="font-weight-bold mb-3">Genere:</h5>
+
+            <br>
+            <div class="row px-2 row-cols-md-2 row-cols-1 nopad text-center">
+                <div class="col px-2 mb-2">
+                    <label class="container">
+                        <input type="radio" name="sexGroup" id="radioMaschio" value="0">
+                        <span class="checkmark"> Maschio </span>
+                    </label>
+                </div>
+                <div class="col px-2 mb-2">
+                    <label class="container">
+                        <input type="radio" name="sexGroup" id="radioFemmina" value="1">
+                        <span class="checkmark">Femmina</span>
+                    </label>
+                </div>
+            </div>
+
+            <br>
+            <p>
+                <b><label class="label">Problematiche:</label></b>
+            </p>
+            <br>
+            <p>
+                <label class="switch">
+                    <input type="checkbox" id="checkIpertensione">
+                    <span class="slider"></span>
+                </label>Ipertensione
+            </p>
+            <p>
+
+                <label class="switch">
+                    <input type="checkbox" id="checkRespiratori">
+                    <span class="slider"></span>
+                </label>Problemi respiratori cronici
+            </p>
+            <p>
+
+                <label class="switch">
+                    <input type="checkbox" id="checkDiabete">
+                    <span class="slider"></span>
+                </label>Diabete
+            </p>
+            <p>
+
+                <label class="switch">
+                    <input type="checkbox" id="checkCardio">
+                    <span class="slider"></span>
+                </label>problemi cardiaci
+            </p>
+            <br>
+            <p>
+                <button id="btnCalcola" onclick="Calcola()" class="Button">Calcola tasso mortalità</button>
+            </p>
+        </div>
+    </form>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
