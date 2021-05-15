@@ -13,8 +13,8 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 
-<body>
-  <b>
+<body class="body">
+    <b>
         <p class="P1">Survival Rate Calculator</p>
     </b>
     <br>
@@ -23,7 +23,7 @@
             <div class="col nopad mb-4">
 
                 <h5 class="font-weight-bold mb-3">Età compresa tra:</h5>
-                <div class="row row-cols-md-2 row-cols-sm-2 row-cols-1 nopad text-center">
+                <div class="row row-cols-md-3 row-cols-xg-5 row-cols-lg-4 row-cols-1 nopad text-center">
                     <div class="col  mb-2">
                         <label class="container">
                             <input type="radio" name="ageGroup" id="radio19" value="0">
@@ -61,7 +61,7 @@
             <h5 class="font-weight-bold mb-3">Genere:</h5>
 
             <br>
-            <div class="row px-2 row-cols-md-2 row-cols-1 nopad text-center">
+            <div class="row px-2 row-cols-lg-2 row-cols-1 nopad text-center">
                 <div class="col px-2 mb-2">
                     <label class="container">
                         <input type="radio" name="sexGroup" id="radioMaschio" value="0">
@@ -113,6 +113,7 @@
                 <button id="btnCalcola" onclick="Calcola()" class="Button">Calcola tasso mortalità</button>
             </p>
         </div>
+        <div class="Div" id="Risulato"></div>
     </form>
     <!-- JS Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
