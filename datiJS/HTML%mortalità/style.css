@@ -3,12 +3,14 @@
     border-style:solid;
     border-width: 1px;
     border-collapse:collapse;
-    width:60%;
+    width:70%;
     text-align:left;
-    border-color: black;
+    border-color: #4b5a81;
     border-radius: 10px;
     padding: 10px;
     margin: auto;
+    background-color: #4b5a81;
+    color: white;
 }
 body
 {
@@ -30,10 +32,9 @@ body
 
 
 
-/* The container */
 .container {
-    display:inline-flex;
-    
+
+    display:inline-block;
     cursor: pointer;
     font-size: 22px;
     -webkit-user-select: none;
@@ -41,7 +42,7 @@ body
     -ms-user-select: none;
     user-select: none;
 
-
+    width: 100%;
 
   }
   
@@ -55,28 +56,28 @@ body
   /* Create a custom radio button */
   .checkmark {
 
-    background-color: #eee;
-    
+    display: inline-block;
+    background-color: #445175;
     border-style:solid;
     border-width: 1px;
     border-collapse:collapse;
-    width:50%;
     text-align:center;
-    border-color: black;
+    border-color: #445175;
     border-radius: 10px;
     padding: 10px;
-    margin: auto;
+    margin: 0%;
+    width: 100%;
     
   }
   
   /* On mouse-over, add a grey background color */
   .container:hover input ~ .checkmark {
-    background-color: #ccc;
+    background-color: #3d486c;
   }
   
   /* When the radio button is checked, add a blue background */
   .container input:checked ~ .checkmark {
-    background-color:rgb(59, 223, 59);
+    background-color:#43ca55;
   }
   
   /* Create the indicator (the dot/circle - hidden when not checked) */
@@ -88,12 +89,12 @@ body
   
   /* Show the indicator (dot/circle) when checked */
   .container input:checked ~ .checkmark:after {
-    display: block;
+    display: inline-block;
   }
   
   /* Style the indicator (dot/circle) */
   .container .checkmark:after {
-        top: 9px;
+      top: 9px;
       left: 9px;
       width: 8px;
       height: 8px;
