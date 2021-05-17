@@ -59,10 +59,10 @@ public class gestioneFile {
         return null;
     }
 
-    public static void CreaFileSettaggi(String percorso, String username, String Password, Object[] Att) throws FileNotFoundException, IOException {
+    public static void CreaFileSettaggi(String percorso, String username, String Password, Object[] Att,boolean naz,boolean regione,boolean province) throws FileNotFoundException, IOException {
         File out = new File(percorso);
         FileOutputStream bout = new FileOutputStream(out);
-        String Stringout = username + "\n" + Password + "\n";
+        String Stringout = username + "\n" + Password + "\n"+naz+ "\n"+regione+ "\n"+province+"\n";
         for (int i=0;i<Att.length-1;i++) {
             Stringout += Att[i].toString() + "\n";
         }
@@ -114,6 +114,22 @@ public class gestioneFile {
         }
         bout.write(DatiOut.getBytes());
     }
+    
+    public static void creaFileProv(String percorso, Vector<String> Attributi) throws FileNotFoundException, IOException {
+        Map<String, Provincia> dati = GestoreProvincia.Instance().getProvince();
+        File out = new File(percorso);
+        FileOutputStream bout = new FileOutputStream(out);
+        String DatiOut = "Nome;";
+        for (int i = 0; i < Attributi.size() - 1; i++) {        //creao l'intestazione
+            DatiOut += Attributi.get(i) + ";";
+        }
+        DatiOut += Attributi.get(Attributi.size() - 1);
+        DatiOut += "\n";
+        for (Provincia r : dati.values()) {
+            DatiOut += r.toCSV() + "\n";
+        }
+        bout.write(DatiOut.getBytes());
+    }
 
     public static boolean Upload(String percorsoFile,  String user, String pass, String nomeFile) {
         int port = 21;
@@ -141,6 +157,7 @@ public class gestioneFile {
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "username o password errati");
+                return false;
             }
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());

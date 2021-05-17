@@ -1,0 +1,10 @@
+
+
+false
+true
+false
+isolamento_domiciliare
+dimessi_guariti
+deceduti
+totale_casi
+tamponi

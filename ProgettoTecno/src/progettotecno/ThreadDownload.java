@@ -14,9 +14,9 @@ import java.util.Vector;
 public class ThreadDownload extends Thread {
 
     private String NomeFIle, percorso;
-    private boolean regione;
+    private int regione;
 
-    public ThreadDownload(String NomeFIle, String percorso, boolean regione) {
+    public ThreadDownload(String NomeFIle, String percorso, int regione) {
         this.NomeFIle = NomeFIle;
         this.percorso = percorso;
         this.regione = regione;
@@ -24,10 +24,14 @@ public class ThreadDownload extends Thread {
 
     @Override
     public void run() {
-        if (regione) {
+        if (regione == 0) {
             Gestore.Istance().AggiungiFile(NomeFIle,gestioneFile.DownloadCSV(percorso) );
-        } else {
+        } else if(regione == 1){
             GestoreNazione.Instance().AggiungiFile(NomeFIle, gestioneFile.DownloadCSV(percorso));
+        }
+        else
+        {
+            GestoreProvincia.Instance().AggiungiFile(NomeFIle, gestioneFile.DownloadCSV(percorso));
         }
     }
 }
