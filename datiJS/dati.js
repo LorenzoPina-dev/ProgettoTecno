@@ -56,7 +56,6 @@ function splitDatiProv(data) {
     let k = 0;
     let righe = data.split("\n");
     let intestazione = righe[0].split(";");
-    let regioni = []; //vettore per le regioni
     let province = []; //vettore per le province
     for (let i = 1; i < righe.length - 1; i++) {
         let campi = righe[i].split(";");
