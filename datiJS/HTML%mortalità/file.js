@@ -58,10 +58,10 @@ function Calcola() {
 
     a = "Rischio mortalità del " + percentualeTotale / 100 + "%";
 
-    if (percentualeTotale / 100 > 19) {
+    if (percentualeTotale / 100 > 19.99) {
         document.getElementById("divRisultato").innerHTML = '<div class="classeRisultatoSopra20"><p class="p2">' + a + '</p></div>';
     }
-    else if (percentualeTotale / 100 > 4) {
+    else if (percentualeTotale / 100 > 4.99) {
         document.getElementById("divRisultato").innerHTML = '<div class="classeRisultatoSopra5"><p class="p2">' + a + '</p></div>';
     } else {
         document.getElementById("divRisultato").innerHTML = '<div class="classeRisultatoSotto5"><p class="p2">' + a + '</p></div>';
