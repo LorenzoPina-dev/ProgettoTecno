@@ -12,6 +12,40 @@
     background-color: #4b5a81;
     color: white;
 }
+
+.classeRisultatoSopra20{
+  width:70%;
+  border-color: #62597b;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  background-color: #62597b;
+  text-align: center;
+  color: #dc577a;
+}
+
+.classeRisultatoSopra5{
+  width:70%;
+  border-color: #646877;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  background-color: #646877;
+  text-align: center;
+  color: #ffc037;
+}
+
+.classeRisultatoSotto5
+{
+  width:70%;
+  border-color: #426e8c;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  background-color: #426e8c;
+  text-align: center;
+  color: #0ee9cc;
+}
 .body
 {
     font-family: Tahoma, Verdana, sans-serif;
@@ -23,6 +57,7 @@
   height: 35px;
   border-radius: 10px;
   background-color: #5469b3;
+  color: white;
 }
 .P1
 {
@@ -30,7 +65,11 @@
   font-size: 60px;
   color: white;
 }
-
+.p2
+{
+  text-align: center;
+  font-size: 25px;
+}
 
 
 
