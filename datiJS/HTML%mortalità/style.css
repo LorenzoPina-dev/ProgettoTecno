@@ -12,26 +12,29 @@
     background-color: #4b5a81;
     color: white;
 }
-body
+.body
 {
     font-family: Tahoma, Verdana, sans-serif;
+    background-color: #445175;
 }
 .Button
 {
   width: 100%;
   height: 35px;
   border-radius: 10px;
-  background-color: white;
+  background-color: #5469b3;
 }
 .P1
 {
   text-align: center;
   font-size: 60px;
+  color: white;
 }
 
 
 
 
+/* The container */
 .container {
 
     display:inline-block;
@@ -104,6 +107,11 @@ body
 
 
 
+
+
+
+
+
 /* toggle / switch */
   .switch {
     position: relative;
@@ -126,7 +134,7 @@ body
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #5469b3;
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 7px;
