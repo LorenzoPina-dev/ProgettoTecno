@@ -1,106 +1,106 @@
-Nome;totale_casi
-L'Aquila;18366
-Teramo;22692
-Pescara;18010
-Chieti;19063
-Fuori Regione / Provincia Autonoma;5316
-In fase di definizione/aggiornamento;755
-Potenza;16475
-Matera;8566
-Cosenza;21669
-Catanzaro;9494
-Crotone;6111
-Vibo Valentia;5243
-Caserta;64431
-Benevento;12136
-Napoli;242242
-Avellino;19502
-Salerno;66286
-Piacenza;22630
-Parma;26906
-Reggio nell'Emilia;46560
-Modena;63685
-Bologna;91977
-Ferrara;22732
-Ravenna;29963
-Forlì-Cesena;35674
-Rimini;34984
-Udine;50519
-Gorizia;12943
-Trieste;21062
-Pordenone;20807
-Viterbo;15668
-Rieti;10139
-Roma;240660
-Latina;13456
-Frosinone;30844
-Imperia;14209
-Savona;16259
-Genova;53201
-Varese;84006
-Como;59128
-Sondrio;14967
-Milano;267080
-Bergamo;51886
-Brescia;104675
-Pavia;43263
-Cremona;26278
-Mantova;34910
-Lecco;24517
-Lodi;16492
-Ancona;32611
-Macerata;20793
-Ascoli Piceno;10970
-Fermo;10053
-Campobasso;9751
-Isernia;3696
-Bolzano;72228
-Trento;44929
-Torino;191144
-Vercelli;13241
-Novara;27379
-Cuneo;51316
-Asti;16953
-Alessandria;28528
-Biella;10982
-Verbano-Cusio-Ossola;12548
-Foggia;44227
-Bari;93474
-Taranto;38579
-Brindisi;18756
-Lecce;25701
-Barletta-Andria-Trani;24593
-Sassari;17053
-Nuoro;10799
-Cagliari;14667
-Oristano;5090
-Sud Sardegna;8531
-Trapani;13433
-Palermo;68112
-Messina;25660
-Agrigento;11162
-Caltanissetta;11305
-Enna;6016
-Catania;56666
-Ragusa;12173
-Siracusa;15827
-Massa Carrara;13092
-Lucca;24196
-Pistoia;22351
-Firenze;65227
-Livorno;17172
-Pisa;28731
-Arezzo;22136
-Siena;13363
-Grosseto;8513
-Prato;21815
-Perugia;42517
-Terni;11034
-Aosta;10980
-Verona;81256
-Vicenza;69233
-Belluno;21318
-Treviso;78921
-Venezia;68857
-Padova;80845
-Rovigo;13850
+Nome;totale_casi;denominazione_regione
+L'Aquila;18366;Abruzzo
+Teramo;22692;Marche
+Pescara;18010;Abruzzo
+Chieti;19063;Abruzzo
+Fuori Regione / Provincia Autonoma;5316;Veneto
+In fase di definizione/aggiornamento;755;Veneto
+Potenza;16475;Basilicata
+Matera;8566;Basilicata
+Cosenza;21669;Calabria
+Catanzaro;9494;Calabria
+Crotone;6111;Calabria
+Vibo Valentia;5243;Calabria
+Caserta;64431;Campania
+Benevento;12136;Campania
+Napoli;242242;Campania
+Avellino;19502;Campania
+Salerno;66286;Campania
+Piacenza;22630;Emilia-Romagna
+Parma;26906;Emilia-Romagna
+Reggio nell'Emilia;46560;Emilia-Romagna
+Modena;63685;Emilia-Romagna
+Bologna;91977;Emilia-Romagna
+Ferrara;22732;Emilia-Romagna
+Ravenna;29963;Emilia-Romagna
+Forlì-Cesena;35674;Emilia-Romagna
+Rimini;34984;Emilia-Romagna
+Udine;50519;Friuli Venezia Giulia
+Gorizia;12943;Friuli Venezia Giulia
+Trieste;21062;Friuli Venezia Giulia
+Pordenone;20807;Friuli Venezia Giulia
+Viterbo;15668;Lazio
+Rieti;10139;Lazio
+Roma;240660;Lazio
+Latina;13456;Liguria
+Frosinone;30844;Lazio
+Imperia;14209;Liguria
+Savona;16259;Liguria
+Genova;53201;Liguria
+Varese;84006;Lombardia
+Como;59128;Lombardia
+Sondrio;14967;Lombardia
+Milano;267080;Lombardia
+Bergamo;51886;Lombardia
+Brescia;104675;Lombardia
+Pavia;43263;Lombardia
+Cremona;26278;Lombardia
+Mantova;34910;Lombardia
+Lecco;24517;Lombardia
+Lodi;16492;Lombardia
+Ancona;32611;Marche
+Macerata;20793;Marche
+Ascoli Piceno;10970;Marche
+Fermo;10053;Marche
+Campobasso;9751;Molise
+Isernia;3696;Molise
+Bolzano;72228;P.A. Bolzano
+Trento;44929;P.A. Trento
+Torino;191144;Piemonte
+Vercelli;13241;Piemonte
+Novara;27379;Piemonte
+Cuneo;51316;Piemonte
+Asti;16953;Piemonte
+Alessandria;28528;Piemonte
+Biella;10982;Piemonte
+Verbano-Cusio-Ossola;12548;Piemonte
+Foggia;44227;Puglia
+Bari;93474;Puglia
+Taranto;38579;Puglia
+Brindisi;18756;Puglia
+Lecce;25701;Puglia
+Barletta-Andria-Trani;24593;Puglia
+Sassari;17053;Sardegna
+Nuoro;10799;Sardegna
+Cagliari;14667;Sardegna
+Oristano;5090;Sardegna
+Sud Sardegna;8531;Sardegna
+Trapani;13433;Sicilia
+Palermo;68112;Sicilia
+Messina;25660;Sicilia
+Agrigento;11162;Sicilia
+Caltanissetta;11305;Sicilia
+Enna;6016;Sicilia
+Catania;56666;Sicilia
+Ragusa;12173;Sicilia
+Siracusa;15827;Sicilia
+Massa Carrara;13092;Toscana
+Lucca;24196;Toscana
+Pistoia;22351;Toscana
+Firenze;65227;Toscana
+Livorno;17172;Toscana
+Pisa;28731;Toscana
+Arezzo;22136;Toscana
+Siena;13363;Toscana
+Grosseto;8513;Toscana
+Prato;21815;Toscana
+Perugia;42517;Umbria
+Terni;11034;Umbria
+Aosta;10980;Valle d'Aosta
+Verona;81256;Veneto
+Vicenza;69233;Veneto
+Belluno;21318;Veneto
+Treviso;78921;Veneto
+Venezia;68857;Veneto
+Padova;80845;Veneto
+Rovigo;13850;Veneto
