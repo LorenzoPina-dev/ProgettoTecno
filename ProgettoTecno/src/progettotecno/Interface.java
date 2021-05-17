@@ -79,7 +79,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TxtUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        TxtPassword = new javax.swing.JTextField();
         Cancella = new javax.swing.JButton();
         AggiornaDati = new javax.swing.JButton();
         CaricaVecchiaConf = new javax.swing.JButton();
@@ -95,6 +94,7 @@ public class Interface extends javax.swing.JFrame {
         ckRegioni = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         ckProvincia = new javax.swing.JCheckBox();
+        TxtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,8 +107,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setText("Password");
         jLabel3.setToolTipText("");
         jLabel3.setName(""); // NOI18N
-
-        TxtPassword.setName("TxtPassword"); // NOI18N
 
         Cancella.setText("Annulla");
         Cancella.setName("butAnnulla"); // NOI18N
@@ -209,12 +207,6 @@ public class Interface extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +218,13 @@ public class Interface extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(ckProvincia)))
-                        .addGap(39, 39, 39)))
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,14 +266,14 @@ public class Interface extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(ButRemuve))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 57, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 62, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -518,7 +516,7 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JList<String> ListAtt;
     private javax.swing.JList<String> ListAttScelti;
     private javax.swing.JTextField TxtFiltroRegione;
-    private javax.swing.JTextField TxtPassword;
+    private javax.swing.JPasswordField TxtPassword;
     private javax.swing.JTextField TxtUsername;
     private javax.swing.JCheckBox ckNazione;
     private javax.swing.JCheckBox ckProvincia;

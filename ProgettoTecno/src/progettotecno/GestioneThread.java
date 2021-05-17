@@ -23,7 +23,7 @@ public class GestioneThread {
         String[] filesNaz = {"https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-andamento-nazionale/dpc-covid19-ita-andamento-nazionale-latest.csv"};
         String[] nomeFileNaz = {"Generale"};
 
-        String nome = "datiProvince";
+        String[] nomiFileProv = {"Generale"};
         String[] province = {"https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province-latest.csv"};
 
         ThreadDownload[] thd = new ThreadDownload[files.length];
@@ -40,7 +40,7 @@ public class GestioneThread {
 
         ThreadDownload[] thdProv = new ThreadDownload[province.length];
         for (int i = 0; i < province.length; i++) {
-            thdProv[i] = new ThreadDownload(nome, province[i], 2);
+            thdProv[i] = new ThreadDownload(nomiFileProv[i], province[i], 2);
         }
 
         for (ThreadDownload th : thdProv) {
@@ -109,11 +109,11 @@ public class GestioneThread {
             gestioneFile.creaFile(percorso + "\\" + nomeFile, ParametriRicerca);
             regione=gestioneFile.Upload(percorso, nome, Password, nomeFile);
         }
-        if (ParametriRicercaNaz.size() > 0) {
+        if (ParametriRicercaNaz.size() > 0 &&regione) {
             gestioneFile.creaFileNaz(percorso + "\\" + nomeFileNaz, ParametriRicercaNaz);
             naz=gestioneFile.Upload(percorso, nome, Password, nomeFileNaz);
         }
-        if (ParametriRicercaProv.size() > 0) {
+        if (ParametriRicercaProv.size() > 0&&regione && naz) {
             gestioneFile.creaFileProv(percorso + "\\" + nomeFileProv, ParametriRicercaProv);
             prov=gestioneFile.Upload(percorso, nome, Password, nomeFileProv);
         }

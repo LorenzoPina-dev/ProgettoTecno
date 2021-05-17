@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/Provincia.java</file>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/gestioneFile.java</file>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/GestoreProvincia.java</file>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/Interface.java</file>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/ThreadRicercaProv.java</file>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/GestioneThread.java</file>
-            <file>file:/D:/ProgettoTecno-java/ProgettoTecno/src/progettotecno/ThreadDownload.java</file>
+            <file>file:/C:/Users/user/Desktop/ProgettoTecno-java/ProgettoTecno/src/progettotecno/ThreadRicercaProv.java</file>
+            <file>file:/C:/Users/user/Desktop/ProgettoTecno-java/ProgettoTecno/src/progettotecno/GestioneThread.java</file>
+            <file>file:/C:/Users/user/Desktop/ProgettoTecno-java/ProgettoTecno/src/progettotecno/Interface.java</file>
+            <file>file:/C:/Users/user/Desktop/ProgettoTecno-java/ProgettoTecno/src/progettotecno/gestioneFile.java</file>
+            <file>file:/C:/Users/user/Desktop/ProgettoTecno-java/ProgettoTecno/src/progettotecno/Provincia.java</file>
         </group>
     </open-files>
 </project-private>

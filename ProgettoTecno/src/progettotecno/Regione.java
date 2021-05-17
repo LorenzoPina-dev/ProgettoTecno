@@ -28,7 +28,12 @@ public class Regione {
     public String toCSV() {
         String ris="";
         for(int i=0;i<regione.length-1;i++)
-            ris+= regione[i].toString()+";";
+        {
+            if(regione[i]!=null)
+                ris+= regione[i].toString()+";";
+            else
+                ris+=";";
+        }
         ris+=regione[regione.length-1].toString();
         return ris;
     }

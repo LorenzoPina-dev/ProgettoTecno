@@ -92,7 +92,10 @@ public class gestioneFile {
         }
         DatiOut += Attributi.get(Attributi.size() - 1) + "\n";
         for (int i = 0; i < dati.length - 1; i++) {
-            DatiOut += dati[i].toString() + ";";
+            if(dati[i]!=null)
+                DatiOut += dati[i].toString() + ";";
+            else
+                DatiOut += ";";
         }
         DatiOut += dati[dati.length - 1].toString();
         DatiOut += "\n";
