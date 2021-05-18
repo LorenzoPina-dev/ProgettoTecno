@@ -1,6 +1,6 @@
 Nome;totale_casi;denominazione_regione
 L'Aquila;18366;Abruzzo
-Teramo;22692;Marche
+Teramo;17071;Abruzzo
 Pescara;18010;Abruzzo
 Chieti;19063;Abruzzo
 Fuori Regione / Provincia Autonoma;5316;Veneto
@@ -9,6 +9,7 @@ Potenza;16475;Basilicata
 Matera;8566;Basilicata
 Cosenza;21669;Calabria
 Catanzaro;9494;Calabria
+Reggio di Calabria;21792;Calabria
 Crotone;6111;Calabria
 Vibo Valentia;5243;Calabria
 Caserta;64431;Campania
@@ -32,11 +33,12 @@ Pordenone;20807;Friuli Venezia Giulia
 Viterbo;15668;Lazio
 Rieti;10139;Lazio
 Roma;240660;Lazio
-Latina;13456;Liguria
+Latina;33847;Lazio
 Frosinone;30844;Lazio
 Imperia;14209;Liguria
 Savona;16259;Liguria
 Genova;53201;Liguria
+La Spezia;13456;Liguria
 Varese;84006;Lombardia
 Como;59128;Lombardia
 Sondrio;14967;Lombardia
@@ -48,6 +50,8 @@ Cremona;26278;Lombardia
 Mantova;34910;Lombardia
 Lecco;24517;Lombardia
 Lodi;16492;Lombardia
+Monza e della Brianza;78038;Lombardia
+Pesaro e Urbino;22692;Marche
 Ancona;32611;Marche
 Macerata;20793;Marche
 Ascoli Piceno;10970;Marche
