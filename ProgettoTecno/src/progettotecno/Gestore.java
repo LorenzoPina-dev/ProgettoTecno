@@ -57,9 +57,9 @@ public class Gestore {
         this.AttRicerca = AttRicerca;
         int size=AttRicerca.size();
         regioni.put("Valle d'Aosta", new Regione(size, "Valle d'Aosta"));  //per settare dei nomi che erano diversi nei file
-        regioni.put("Provincia Autonoma Trento", new Regione(size, "Provincia Autonoma Trento"));
-        regioni.put("Provincia Autonoma Bolzano", new Regione(size, "Provincia Autonoma Bolzano"));
-        regioni.put("Friuli-Venezia Giulia", new Regione(size, "Friuli-Venezia Giulia"));
+        regioni.put("P.A. Trento", new Regione(size, "P.A. Trento"));
+        regioni.put("P.A. Bolzano", new Regione(size, "P.A. Bolzano"));
+        regioni.put("Friuli Venezia Giulia", new Regione(size, "Friuli Venezia Giulia"));
     }
 
     public static synchronized Gestore Istance() {

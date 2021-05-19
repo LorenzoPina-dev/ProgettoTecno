@@ -27,26 +27,27 @@ public class GestoreProvincia {
         province = new LinkedHashMap<String, Provincia>();
         files = new HashMap<String, Vector<String>>();
     }
-    
-    public Vector<String> getAllAtt(){
-        Vector<String> ris= new Vector<String>();
-        for(Vector<String> file:files.values())
-        { 
-            String[] temp=file.get(0).split(";");
-            for(String Att:temp)
+
+    public Vector<String> getAllAtt() {
+        Vector<String> ris = new Vector<String>();
+        for (Vector<String> file : files.values()) {
+            String[] temp = file.get(0).split(";");
+            for (String Att : temp) {
                 ris.add(Att);
+            }
         }
-        return  ris;
+        return ris;
     }
-    public Vector<String> getAllFileAtt(){
-        Vector<String> ris= new Vector<String>();   //restituisco il nome del file che appartiene a ogni attributo che l'utente può scegliere
-        for(String file:files.keySet())
-        { 
-            String[] temp=files.get(file).get(0).split(";");    //esptraggo gli attributi che ci sono nel file
-            for(String Att:temp)
+
+    public Vector<String> getAllFileAtt() {
+        Vector<String> ris = new Vector<String>();   //restituisco il nome del file che appartiene a ogni attributo che l'utente può scegliere
+        for (String file : files.keySet()) {
+            String[] temp = files.get(file).get(0).split(";");    //esptraggo gli attributi che ci sono nel file
+            for (String Att : temp) {
                 ris.add(file);
+            }
         }
-        return  ris;
+        return ris;
     }
 
     public Vector<String> getAttRicerca() {
@@ -55,7 +56,7 @@ public class GestoreProvincia {
 
     public void setAttRicerca(Vector<String> AttRicerca) {
         this.AttRicerca = AttRicerca;
-        int size=AttRicerca.size();
+        int size = AttRicerca.size();
     }
 
     public static synchronized GestoreProvincia Instance() {
@@ -66,15 +67,20 @@ public class GestoreProvincia {
     }
 
     public Provincia findProvincia(String provincia) {
-        if (!province.containsKey(provincia)) {
-            String key = ControllaSimili(provincia);
-            if (key == null) {
-                province.put(provincia, new Provincia(AttRicerca.size(), provincia));
-            } else {
-                provincia = key;
+
+        if (!provincia.contains("In fase di definizione/aggiornamento") && !provincia.contains("Fuori Regione / Provincia Autonoma")) {
+            if (!province.containsKey(provincia)) {
+                String key = ControllaSimili(provincia);
+                if (key == null) {
+                    province.put(provincia, new Provincia(AttRicerca.size(), provincia));
+                } else {
+                    provincia = key;
+                }
             }
+            return province.get(provincia);
+        } else {
+            return null;
         }
-        return province.get(provincia);
     }
 
     public String ControllaSimili(String provincia) {
@@ -104,7 +110,9 @@ public class GestoreProvincia {
 
     public synchronized void settaValore(String provincia, int pos, Object valore) {
         Provincia r = findProvincia(provincia);
-        r.setAttributo(pos, valore);
+        if (r != null) {
+            r.setAttributo(pos, valore);
+        }
     }
 
     public synchronized Map<String, Provincia> getProvince() {
