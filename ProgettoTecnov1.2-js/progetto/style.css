@@ -1,0 +1,270 @@
+table, thead, tbody, th, tr, td{
+    border: 1px solid white !important;
+    border-collapse: collapse !important;
+}
+
+#divTable {
+    margin-left: 5px;
+}
+
+.cella {
+    border: 1px solid white !important;
+    border-collapse: collapse !important;
+}
+
+.fontSize{
+  font-size: 17px;
+}
+
+.tableCenter{
+  text-align: center ;
+}
+
+.colore{
+  color: white !important;
+}
+
+button{
+  color: white !important;
+}
+
+
+.center{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.colorText{
+  color: white;
+}
+
+.colorDetails{
+  background-color: #64719e;
+}
+
+.sfondo{
+  background-color: #445175;
+   /* background-color: #7698ec;  */
+  /* background-color: #d36e70; */
+}
+
+.button{
+  border: 0px;  
+  background-color: rgba(0, 0, 0, 0);
+}
+/* grafica gioco */
+
+.Div
+{
+    border-style:solid;
+    border-width: 1px;
+    border-collapse:collapse;
+    width:70%;
+    text-align:left;
+    border-color: #4b5a81;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    background-color: #4b5a81;
+    color: white;
+}
+
+.classeRisultatoSopra20{
+  width:70%;
+  border-color: #62597b;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  background-color: #62597b;
+  text-align: center;
+  color: #dc577a;
+}
+
+.classeRisultatoSopra5{
+  width:70%;
+  border-color: #646877;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  background-color: #646877;
+  text-align: center;
+  color: #ffc037;
+}
+
+.classeRisultatoSotto5
+{
+  width:70%;
+  border-color: #426e8c;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  background-color: #426e8c;
+  text-align: center;
+  color: #0ee9cc;
+}
+
+.Button
+{
+  width: 100%;
+  height: 35px;
+  border-radius: 10px;
+  background-color: #5469b3;
+  color: white;
+}
+.P1
+{
+  text-align: center;
+  font-size: 60px;
+  color: white;
+  font-family: "Bahnschrift Light SemiCondensed";
+}
+.fontChange{
+  font-family: "Bahnschrift Light SemiCondensed";
+  font-size: 25px;
+}
+
+.p2
+{
+  text-align: center;
+  font-size: 25px;
+}
+
+
+/* The container */
+.container {
+
+    display:inline-block;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    width: 100%;
+
+  }
+  
+  /* Hide the browser's default radio button */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark {
+
+    display: inline-block;
+    background-color: #445175;
+    border-style:solid;
+    border-width: 1px;
+    border-collapse:collapse;
+    text-align:center;
+    border-color: #445175;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0%;
+    width: 100%;
+    
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #3d486c;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color:#43ca55;
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container input:checked ~ .checkmark:after {
+    display: inline-block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container .checkmark:after {
+      top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+  }
+
+
+/* toggle / switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+    
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #5469b3;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 7px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 23px;
+    width: 10px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 5px;
+  }
+  
+  input:checked + .slider {
+    background-color: rgb(59, 223, 59);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px rgb(59, 223, 59);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(33px);
+    -ms-transform: translateX(33x);
+    transform: translateX(33px);
+    
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+    
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
