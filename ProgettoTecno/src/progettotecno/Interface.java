@@ -33,13 +33,14 @@ public class Interface extends javax.swing.JFrame {
     /**
      * Creates new form Interface
      */
-    Vector<String> AllAtt, FileAtt, AllAttNaz, FileAttNaz;        //i dati relativi agli attributi che l'utente può selezionare
+    Vector<String> AllAtt, FileAtt, FileAttProv, AllAttProv, AllAttNaz, FileAttNaz;        //i dati relativi agli attributi che l'utente può selezionare
     Vector<String> RimanentiReg;  //per gestire la ricerca degli attributi e rappresentano i dati che l'utente può ancora scegliere
     DefaultListModel<String> model, model2; //le 4 liste 2 per gli attributi scelti e non e le altre 2 per la nazione
     String percorso = ".\\";
     String nomeSettaggi = "settaggi.txt";
     String nomeDati = "dati.csv";
     String nomeDatiNaz = "datiNaz.csv";
+    String nomeDatiProv = "datiProv.csv";
 
     public Interface() {
         initComponents();
@@ -52,6 +53,8 @@ public class Interface extends javax.swing.JFrame {
         FileAtt = Gestore.Istance().getAllFileAtt();
         AllAttNaz = GestoreNazione.Instance().getAllAtt();
         FileAttNaz = GestoreNazione.Instance().getAllFileAtt();
+        AllAttProv = GestoreProvincia.Instance().getAllAtt();
+        FileAttProv = GestoreProvincia.Instance().getAllFileAtt();
         RimanentiReg = new Vector<String>();
         model = new DefaultListModel<String>();
         model2 = new DefaultListModel<String>();
@@ -61,6 +64,7 @@ public class Interface extends javax.swing.JFrame {
         ListAtt.setModel(model);
         ListAttScelti.setModel(model2);
         AggiornaRegione();
+        renderizzaSelezionate();
     }
 
     /**
@@ -75,7 +79,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         TxtUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        TxtPassword = new javax.swing.JTextField();
         Cancella = new javax.swing.JButton();
         AggiornaDati = new javax.swing.JButton();
         CaricaVecchiaConf = new javax.swing.JButton();
@@ -87,10 +90,15 @@ public class Interface extends javax.swing.JFrame {
         ButRemuve = new javax.swing.JButton();
         TxtFiltroRegione = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        ckNazione = new javax.swing.JCheckBox();
+        ckRegioni = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        ckProvincia = new javax.swing.JCheckBox();
+        TxtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setText("username:");
+        jLabel2.setText("prelevare dati di:");
         jLabel2.setToolTipText("");
         jLabel2.setName(""); // NOI18N
 
@@ -99,8 +107,6 @@ public class Interface extends javax.swing.JFrame {
         jLabel3.setText("Password");
         jLabel3.setToolTipText("");
         jLabel3.setName(""); // NOI18N
-
-        TxtPassword.setName("TxtPassword"); // NOI18N
 
         Cancella.setText("Annulla");
         Cancella.setName("butAnnulla"); // NOI18N
@@ -140,7 +146,7 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
-        ButRemuve.setText("remuve");
+        ButRemuve.setText("remove");
         ButRemuve.setName("ButRemuve"); // NOI18N
         ButRemuve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +162,37 @@ public class Interface extends javax.swing.JFrame {
 
         jLabel6.setText("ricerca Attributi");
 
+        ckNazione.setSelected(true);
+        ckNazione.setText("Nazione");
+        ckNazione.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckNazioneItemStateChanged(evt);
+            }
+        });
+
+        ckRegioni.setText("Regioni");
+        ckRegioni.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckRegioniItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setText("username:");
+        jLabel4.setToolTipText("");
+        jLabel4.setName(""); // NOI18N
+
+        ckProvincia.setText("Province");
+        ckProvincia.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ckProvinciaItemStateChanged(evt);
+            }
+        });
+        ckProvincia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ckProvinciaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -169,15 +206,27 @@ public class Interface extends javax.swing.JFrame {
                 .addComponent(AggiornaDati)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ckNazione, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ckRegioni, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(ckProvincia)))
+                        .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,13 +236,17 @@ public class Interface extends javax.swing.JFrame {
                             .addComponent(ButRemuve))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 16, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel6)
                         .addGap(27, 27, 27)
                         .addComponent(TxtFiltroRegione, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(484, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,22 +265,35 @@ public class Interface extends javax.swing.JFrame {
                                 .addComponent(ButAdd)
                                 .addGap(18, 18, 18)
                                 .addComponent(ButRemuve))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 62, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(TxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 21, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ckNazione)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ckRegioni, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(ckProvincia)
+                        .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(Cancella)
                         .addComponent(AggiornaDati))
                     .addComponent(CaricaVecchiaConf))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(319, Short.MAX_VALUE)))
         );
 
         pack();
@@ -237,26 +303,44 @@ public class Interface extends javax.swing.JFrame {
         int sizeModel12 = model2.size();
         Vector<String> AttScelti = new Vector<String>(), File = new Vector<String>();
         Vector<String> AttSceltiNaz = new Vector<String>(), FileNaz = new Vector<String>();
+        
+        Vector<String> AttSceltiProv = new Vector<String>(), FileProv = new Vector<String>();
+        
         for (int i = 0; i < sizeModel12; i++) {
-            for (int j = 0; j < AllAtt.size(); j++) {
-                if (AllAtt.get(j).equals(model2.get(i))) {
-                    AttScelti.addElement(model2.get(i));
-                    File.addElement(FileAtt.get(j));
-                    break;
+            if (ckRegioni.isSelected()) {
+                for (int j = 0; j < AllAtt.size(); j++) {
+                    if (AllAtt.get(j).toLowerCase().equals(model2.get(i).toLowerCase())) {
+                        AttScelti.addElement(model2.get(i));
+                        File.addElement(FileAtt.get(j));
+                        break;
+                    }
                 }
             }
 
-            for (int j = 0; j < AllAttNaz.size(); j++) {
-                if (AllAttNaz.get(j).equals(model2.get(i))) {
-                    AttSceltiNaz.addElement(model2.get(i));
-                    FileNaz.addElement(FileAttNaz.get(j));
-                    break;
+            if (ckNazione.isSelected()) {
+                for (int j = 0; j < AllAttNaz.size(); j++) {
+                    if (AllAttNaz.get(j).toLowerCase().equals(model2.get(i).toLowerCase())) {
+                        AttSceltiNaz.addElement(model2.get(i));
+                        FileNaz.addElement(FileAttNaz.get(j));
+                        break;
+                    }
                 }
             }
+            
+            if (ckProvincia.isSelected()) {
+                for (int j = 0; j < AllAttProv.size(); j++) {
+                    if (AllAttProv.get(j).toLowerCase().equals(model2.get(i).toLowerCase())) {
+                        AttSceltiProv.addElement(model2.get(i));
+                        FileProv.addElement(FileAttProv.get(j));
+                        break;
+                    }
+                }
+            }
+            
         }
         try {
-            GestioneRicerca(percorso, nomeDati, nomeDatiNaz, TxtUsername.getText(), TxtPassword.getText(), AttScelti, File, AttSceltiNaz, FileNaz);
-            gestioneFile.CreaFileSettaggi(percorso + "\\" + nomeSettaggi, TxtUsername.getText(), TxtPassword.getText(), model2.toArray());    //file che serve per dare una esperienza migliore all'utente in modo tale che non deve inserire sempre tutti i dati ma ha un salvataggio del ultimo settaggio
+            GestioneRicerca(percorso, nomeDati, nomeDatiNaz, nomeDatiProv, TxtUsername.getText(), TxtPassword.getText(), AttScelti, File, AttSceltiNaz,FileNaz, AttSceltiProv,  FileProv);
+            gestioneFile.CreaFileSettaggi(percorso + "/" + nomeSettaggi, TxtUsername.getText(), TxtPassword.getText(), model2.toArray(),ckNazione.isSelected(),ckRegioni.isSelected(),ckProvincia.isSelected());//file che serve per dare una esperienza migliore all'utente in modo tale che non deve inserire sempre tutti i dati ma ha un salvataggio del ultimo settaggio
         } catch (IOException ex) {
             Logger.getLogger(Interface.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
@@ -283,12 +367,17 @@ public class Interface extends javax.swing.JFrame {
 
     private void CaricaVecchiaConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CaricaVecchiaConfActionPerformed
         try {
-            String[] Att = gestioneFile.LeggiFileSettaggi(percorso + "\\" + nomeSettaggi);
+            String[] Att = gestioneFile.LeggiFileSettaggi(percorso + "/" + nomeSettaggi);
             model2.clear();
             TxtUsername.setText(Att[0]);
             TxtPassword.setText(Att[1]);
+            ckNazione.setSelected(Boolean.parseBoolean(Att[2]));
+            ckRegioni.setSelected(Boolean.parseBoolean(Att[3]));
+            ckProvincia.setSelected(Boolean.parseBoolean(Att[4]));
             RimanentiReg = (Vector<String>) AllAtt.clone();
-            for (int i = 2; i < Att.length; i++) {
+            for(int i=0;i<RimanentiReg.size();i++)
+                RimanentiReg.set(i,RimanentiReg.get(i).toLowerCase());
+            for (int i = 5; i < Att.length; i++) {
                 RimanentiReg.remove(Att[i]);
                 model2.addElement(Att[i]);
             }
@@ -311,6 +400,22 @@ public class Interface extends javax.swing.JFrame {
     private void TxtFiltroRegioneKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroRegioneKeyPressed
         filtra(model, TxtFiltroRegione.getText(), RimanentiReg);
     }//GEN-LAST:event_TxtFiltroRegioneKeyPressed
+
+    private void ckNazioneItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckNazioneItemStateChanged
+        renderizzaSelezionate();
+    }//GEN-LAST:event_ckNazioneItemStateChanged
+
+    private void ckRegioniItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckRegioniItemStateChanged
+        renderizzaSelezionate();
+    }//GEN-LAST:event_ckRegioniItemStateChanged
+
+    private void ckProvinciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ckProvinciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ckProvinciaActionPerformed
+
+    private void ckProvinciaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ckProvinciaItemStateChanged
+        renderizzaSelezionate();
+    }//GEN-LAST:event_ckProvinciaItemStateChanged
     private void filtra(DefaultListModel<String> model, String testo, Vector<String> all) {
         if (model == null || testo == null || all == null) {
             return;
@@ -336,6 +441,33 @@ public class Interface extends javax.swing.JFrame {
             rimanenti.addElement(El);
         } else {
             rimanenti.remove(El);
+        }
+        AggiornaRegione();
+    }
+
+    private void renderizzaSelezionate() {
+        RimanentiReg.clear();
+        model2.clear();
+        if (ckNazione.isSelected()) {
+            for (String Att : AllAttNaz) {
+                if (!RimanentiReg.contains(Att.toLowerCase())) {
+                    RimanentiReg.addElement(Att.toLowerCase());
+                }
+            }
+        }
+        if (ckRegioni.isSelected()) {
+            for (String Att : AllAtt) {
+                if (!RimanentiReg.contains(Att.toLowerCase())) {
+                    RimanentiReg.addElement(Att.toLowerCase());
+                }
+            }
+        }
+        if (ckProvincia.isSelected()) {
+            for (String Att : AllAttProv) {
+                if (!RimanentiReg.contains(Att.toLowerCase())) {
+                    RimanentiReg.addElement(Att.toLowerCase());
+                }
+            }
         }
         AggiornaRegione();
     }
@@ -384,10 +516,14 @@ public class Interface extends javax.swing.JFrame {
     private javax.swing.JList<String> ListAtt;
     private javax.swing.JList<String> ListAttScelti;
     private javax.swing.JTextField TxtFiltroRegione;
-    private javax.swing.JTextField TxtPassword;
+    private javax.swing.JPasswordField TxtPassword;
     private javax.swing.JTextField TxtUsername;
+    private javax.swing.JCheckBox ckNazione;
+    private javax.swing.JCheckBox ckProvincia;
+    private javax.swing.JCheckBox ckRegioni;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

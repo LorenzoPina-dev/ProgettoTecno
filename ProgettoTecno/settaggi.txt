@@ -1,0 +1,15 @@
+applorenzo2
+sHiRa_310508
+true
+true
+true
+deceduti
+nuovi_positivi
+dosi_consegnate
+dosi_somministrate
+totale_positivi
+dimessi_guariti
+ricoverati_con_sintomi
+percentuale_somministrazione
+totale_casi
+denominazione_regione

@@ -16,37 +16,38 @@ import java.util.Vector;
  *
  * @author user
  */
-public class Gestore {
+public class GestoreProvincia {
 
-    private static Gestore istance = null;
+    private static GestoreProvincia instance = null;
     private Map<String, Vector<String>> files;    //uso le mappe in modo da avere maggiore accessibilità e maggiore chiarezza nell'accesso
-    private Map<String, Regione> regioni;
+    private Map<String, Provincia> province;
     private Vector<String> AttRicerca;
 
-    private Gestore() {
-        regioni = new LinkedHashMap<String, Regione>();
+    private GestoreProvincia() {
+        province = new LinkedHashMap<String, Provincia>();
         files = new HashMap<String, Vector<String>>();
     }
-    
-    public Vector<String> getAllAtt(){
-        Vector<String> ris= new Vector<String>();
-        for(Vector<String> file:files.values())
-        { 
-            String[] temp=file.get(0).split(";");
-            for(String Att:temp)
+
+    public Vector<String> getAllAtt() {
+        Vector<String> ris = new Vector<String>();
+        for (Vector<String> file : files.values()) {
+            String[] temp = file.get(0).split(";");
+            for (String Att : temp) {
                 ris.add(Att);
+            }
         }
-        return  ris;
+        return ris;
     }
-    public Vector<String> getAllFileAtt(){
-        Vector<String> ris= new Vector<String>();   //restituisco il nome del file che appartiene a ogni attributo che l'utente può scegliere
-        for(String file:files.keySet())
-        { 
-            String[] temp=files.get(file).get(0).split(";");    //esptraggo gli attributi che ci sono nel file
-            for(String Att:temp)
+
+    public Vector<String> getAllFileAtt() {
+        Vector<String> ris = new Vector<String>();   //restituisco il nome del file che appartiene a ogni attributo che l'utente può scegliere
+        for (String file : files.keySet()) {
+            String[] temp = files.get(file).get(0).split(";");    //esptraggo gli attributi che ci sono nel file
+            for (String Att : temp) {
                 ris.add(file);
+            }
         }
-        return  ris;
+        return ris;
     }
 
     public Vector<String> getAttRicerca() {
@@ -55,37 +56,38 @@ public class Gestore {
 
     public void setAttRicerca(Vector<String> AttRicerca) {
         this.AttRicerca = AttRicerca;
-        int size=AttRicerca.size();
-        regioni.put("Valle d'Aosta", new Regione(size, "Valle d'Aosta"));  //per settare dei nomi che erano diversi nei file
-        regioni.put("P.A. Trento", new Regione(size, "P.A. Trento"));
-        regioni.put("P.A. Bolzano", new Regione(size, "P.A. Bolzano"));
-        regioni.put("Friuli Venezia Giulia", new Regione(size, "Friuli Venezia Giulia"));
+        int size = AttRicerca.size();
     }
 
-    public static synchronized Gestore Istance() {
-        if (istance == null) {
-            istance = new Gestore();
+    public static synchronized GestoreProvincia Instance() {
+        if (instance == null) {
+            instance = new GestoreProvincia();
         }
-        return istance;
+        return instance;
     }
 
-    public Regione findRegione(String regione) {
-        if (!regioni.containsKey(regione)) {
-            String key = ControllaSimili(regione);
-            if (key == null) {
-                regioni.put(regione, new Regione(AttRicerca.size(), regione));
-            } else {
-                regione = key;
+    public Provincia findProvincia(String provincia) {
+
+        if (!provincia.contains("In fase di definizione/aggiornamento") && !provincia.contains("Fuori Regione / Provincia Autonoma")) {
+            if (!province.containsKey(provincia)) {
+                String key = ControllaSimili(provincia);
+                if (key == null) {
+                    province.put(provincia, new Provincia(AttRicerca.size(), provincia));
+                } else {
+                    provincia = key;
+                }
             }
+            return province.get(provincia);
+        } else {
+            return null;
         }
-        return regioni.get(regione);
     }
 
-    public String ControllaSimili(String regione) {
+    public String ControllaSimili(String provincia) {
         String[] caratteriSeparazione = {"/", " ", "-"};        //splitto i moni delle regioni per controllare ogni pezzo e evitare problemi in qui i nomi siano leggermente diversi
         Vector<String> temp = new Vector<String>();
         Vector<String> pos = new Vector<String>();
-        temp.add(regione);
+        temp.add(provincia);
         for (String caratteri : caratteriSeparazione) {
             for (String el : temp) {
                 String[] sup = el.split(caratteri);
@@ -96,7 +98,7 @@ public class Gestore {
             temp = (Vector<String>) pos.clone();
             pos.clear();
         }
-        for (String key : regioni.keySet()) {
+        for (String key : province.keySet()) {
             for (String pezzo : temp) {
                 if ((key.contains(pezzo) || pezzo.contains(key)) && !pezzo.equals("") && !pezzo.contains("Provincia") && !pezzo.contains("Autonoma") && !pezzo.contains("Valle") && !pezzo.contains("P.A.")) {
                     return key;
@@ -106,13 +108,15 @@ public class Gestore {
         return null;
     }
 
-    public synchronized void settaValore(String regione, int pos, Object valore) {
-        Regione r = findRegione(regione);
-        r.setAttributo(pos, valore);
+    public synchronized void settaValore(String provincia, int pos, Object valore) {
+        Provincia r = findProvincia(provincia);
+        if (r != null) {
+            r.setAttributo(pos, valore);
+        }
     }
 
-    public synchronized Map<String, Regione> getRegioni() {
-        return regioni;
+    public synchronized Map<String, Provincia> getProvince() {
+        return province;
     }
 
     public synchronized Map<String, Vector<String>> getFiles() {
